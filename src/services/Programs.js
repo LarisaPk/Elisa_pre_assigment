@@ -12,9 +12,14 @@ const getAllChannels = async ()=> {
     const response = await axios.get(`${baseUrl}channels`)
     return response.data
   }
+//get all logos
+const getAllLogos = async ()=> {
+  const response = await axios.get(`${baseUrl}channels/all`)
+  return response.data
+}
 //get programs on a channel on specific day
 const getProgramsOnChannel = async (channelIds, date)=> {
     const response = await axios.get(`${baseUrl}schedule?channelId=${channelIds}&date=${date}`)
     return response.data
   }  
-export default { getLivePrograms, getAllChannels, getProgramsOnChannel }
+export default { getLivePrograms, getAllChannels, getProgramsOnChannel, getAllLogos }

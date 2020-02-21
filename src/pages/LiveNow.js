@@ -2,9 +2,9 @@ import React from 'react'
 import LivePrograms from '../components/LivePrograms'
 import Channels from '../components/Channels'
 
-const LiveNow = ({livePrograms, channels})=> {
+const LiveNow = ({livePrograms, channels, logos})=> {
 
- if (!livePrograms||!channels) {
+ if (!livePrograms||!channels||!logos) {
         return (
           <div>
             <h1>Loading...</h1>
@@ -13,10 +13,8 @@ const LiveNow = ({livePrograms, channels})=> {
       }
   return (
     <div>
-      
-      <Channels channels={channels}/>
-      
-      <LivePrograms livePrograms={livePrograms}/>
+      <Channels channels={logos}/>     
+      <LivePrograms livePrograms={livePrograms} channels={channels} logos={logos}/>
     </div>  
   )
 }

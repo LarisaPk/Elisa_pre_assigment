@@ -11,15 +11,15 @@ const Channels =({channels}) => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 7,
+        slidesToShow: 9,
         slidesToScroll: 1,
         arrows:true,
         responsive: [
             {
                 breakpoint: 1300,
                 settings: {
-                  slidesToShow: 5,
-                  slidesToScroll: 5,
+                  slidesToShow: 7,
+                  slidesToScroll: 7,
                   infinite: true,
       
                 }
@@ -27,8 +27,8 @@ const Channels =({channels}) => {
             {
               breakpoint: 1024,
               settings: {
-                slidesToShow: 3,
-                slidesToScroll: 3,
+                slidesToShow: 5,
+                slidesToScroll: 5,
                 infinite: true,
     
               }
@@ -45,8 +45,8 @@ const Channels =({channels}) => {
             {
               breakpoint: 480,
               settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
+                slidesToShow: 3,
+                slidesToScroll: 3
               }
             }
           ]
@@ -60,7 +60,7 @@ console.log(channels)
         <h2>Choose the channels</h2>
       <Slider {...settings}>
         {channels.map(channel=>
-        <ChannelCard key={channel.id} name={channel.name} img={channel.logos[6].url}/>
+        <ChannelCard key={channel.id} name={channel.name} img={channel.logos[6]?channel.logos[6].url:channel.logos[1].url}/>
         )}
 
       </Slider>
