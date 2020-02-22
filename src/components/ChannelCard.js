@@ -1,17 +1,21 @@
-import React from 'react'
-import { Card, Image } from 'semantic-ui-react'
+import React, { useState } from 'react'
 import  './ChannelCard.css'
 
-const ChannelCard =({name, img}) => {
+const ChannelCard =({name, img, HandleChooseChannel, HandleRemoveChannel, id}) => {
+
+  const [clicked, setClicked] = useState(false)
+
+  const handleClick =(id)=>{
+    !clicked?HandleChooseChannel(id):HandleRemoveChannel(id)
+    setClicked(!clicked)
+  }
 
 return (
-  <div>
-    <Card className ='channel_Card'>
-      <Image src={img} wrapped ui={false} />
-      <Card.Content>
-      <Card.Header className ='channel_Card_header'>{name}</Card.Header>
-    </Card.Content>
-  </Card>
+  <div className ={!clicked?'channel_Card':'channel_CardClicked'} onClick={()=>handleClick(id)} >
+    <img className ='channel_img'src={img} alt= {name}/>
+    <div className ='channel_text'>
+      {name}
+    </div>
   </div>
 
   )

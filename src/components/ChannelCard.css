@@ -1,8 +1,43 @@
-.ui.card.channel_Card {
-    padding:1em;
-    margin-top: 1em;
-    border-style: solid;
-    border-color: gray;
-    font-size: 0.7em;
-    border-radius: 15px;
-  }
+.channel_Card {
+  height: 13em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin: 0.3em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.channel_CardClicked {
+  height: 13em;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin: 0.3em;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: rgb(185, 166, 194);
+}
+.channel_Card:hover {
+  box-shadow: 0 8px 16px 0 rgba(75, 3, 71, 0.178);
+  background-color: rgb(240, 220, 250);
+}
+.channel_img{
+ max-height: 80%;
+ padding:0.5em;
+ padding-top:1em;
+}
+.channel_text{
+  padding-bottom:1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  text-align: center;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
