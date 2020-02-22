@@ -4,8 +4,9 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import  './Channels.css'
 import ChannelCard from './ChannelCard'
+import { Button } from 'semantic-ui-react'
 
-const Channels =({channels, HandleChooseChannel, HandleRemoveChannel}) => {
+const Channels =({channels, HandleChooseChannel, HandleRemoveChannel, reset, showAll}) => {
 
     const settings = {
         dots: false,
@@ -57,10 +58,10 @@ console.log(channels)
 
   return (
     <div> 
-        <h2>Choose the channels</h2>
+        <h2>Choose the channels</h2>{!showAll?<Button onClick={()=>reset()}>Cancel all</Button>:<></>}
       <Slider {...settings}>
         {channels.map(channel=>
-        <ChannelCard HandleChooseChannel={HandleChooseChannel} HandleRemoveChannel={HandleRemoveChannel} key={channel.id} id={channel.id} name={channel.name} img={channel.logos[6]?channel.logos[6].url:channel.logos[1].url}/>
+        <ChannelCard showAll ={showAll} HandleChooseChannel={HandleChooseChannel} HandleRemoveChannel={HandleRemoveChannel} key={channel.id} id={channel.id} name={channel.name} img={channel.logos[6]?channel.logos[6].url:channel.logos[1].url}/>
         )}
 
       </Slider>

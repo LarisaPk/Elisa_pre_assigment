@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react'
 import { Header, Image, Table } from 'semantic-ui-react'
-import Clock from 'react-live-clock'
+
+
 
 const LivePrograms =({livePrograms, channels, logos}) => {
 console.log(livePrograms)
@@ -37,15 +38,14 @@ if (programs.length===0) {
 }
   return (
     <div style={{marginTop:'4em'}}> 
-    <h2 style={{textAlign:'left', margin:'1em'}}>Time <Clock format={'HH:mm:ss'} ticking={true} timezone={'Europe/Helsinki'} /></h2>
     <h2 style={{textAlign:'center', margin:'1em'}}>Live now</h2>
 
         <Table basic='very' celled padded>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell width={2}>Channel</Table.HeaderCell>
-            <Table.HeaderCell width={4}>Program name</Table.HeaderCell>
-            <Table.HeaderCell width={4}>Strart time - end time</Table.HeaderCell>
+            <Table.HeaderCell width={3}>Program name</Table.HeaderCell>
+            <Table.HeaderCell width={2}>Strart time - end time</Table.HeaderCell>
           </Table.Row>
        </Table.Header>
 
