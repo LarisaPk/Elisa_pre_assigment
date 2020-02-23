@@ -7,7 +7,6 @@ import { Menu } from 'semantic-ui-react'
 import Clock from 'react-live-clock'
 import ProgramsService from './services/Programs'
 import { Loader } from 'semantic-ui-react'
-import Channels from './components/Channels'
 
 
 function App() {
@@ -66,7 +65,7 @@ function App() {
     }        
   }, [])
 
-// fetch channels for missing logos on first render (previousely there were not all channesl actually for those programs that live...) One logo is missing anyhow. Netflix
+// fetch channels for missing logos on first render (previousely there were not all channesl actually for those programs that live...) if image is missing using default image url
   useEffect(() => {
     let didCancel= false
     const  fetchMyAPI = async ()  => {
@@ -79,8 +78,17 @@ function App() {
             name:channel.name
           }) 
           )
-          const result = logos.filter(logo => logo.logos.length > 0)
+          const result = logos.map(logo=>{
+          const logoUrl = 
+          [{url: "https://www.childhood.org.au/app/uploads/2017/07/ACF-logo-placeholder-300x300.png",
+          },
+          {url: "https://www.childhood.org.au/app/uploads/2017/07/ACF-logo-placeholder-300x300.png",
+          }]
+          logo.logos=logo.logos.length===0?logoUrl:logo.logos
+          return logo
+        })
           setLogos(result)
+          
         console.log(result,'logos');
         }
       }
@@ -156,7 +164,7 @@ function App() {
 
           <Route exact path="/" render={() => <LiveNow reset ={reset} HandleChooseChannel={HandleChooseChannel} HandleRemoveChannel={HandleRemoveChannel} showAll={showAll} livePrograms={livePrograms} filteredPrograms={filteredPrograms} allChannels={allChannels}  logos={logos} />} />
           <Route path="/live" render={() => <LiveNow reset ={reset} HandleChooseChannel={HandleChooseChannel} HandleRemoveChannel={HandleRemoveChannel} showAll={showAll} livePrograms={livePrograms} filteredPrograms={filteredPrograms} allChannels={allChannels}  logos={logos}/>} />
-          <Route path="/schedule" render={() => <Schedule/>} />
+          <Route path="/schedule" render={() => <Schedule      allChannels={allChannels}  logos={logos}/>} />
         </div>
       </Router>
 

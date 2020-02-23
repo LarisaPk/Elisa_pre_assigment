@@ -28,7 +28,7 @@ useEffect(() => {
 
 console.log(programs,'programs to show')
 
-//there is one channel in the slider that has nothing live (Motorvision TV (tilapäinen)).
+//if nothing curentely live on the channel
 if (programs.length===0) {
   return (
     <div>
@@ -54,7 +54,7 @@ if (programs.length===0) {
            <Table.Row key={program.id}>
               <Table.Cell>
                 <Header as='h4' image>
-                  <Image src={program.logo?program.logo:'https://kodi.tv/sites/default/files/styles/medium_crop/public/addon_assets/plugin.video.elisa.viihde/icon/icon.png?itok=ANCAlOsJ'}  size='small' />
+                  <Image src={program.logo} size='small' />
                  <Header.Content>
                   {program.channel.name}
                  </Header.Content>
