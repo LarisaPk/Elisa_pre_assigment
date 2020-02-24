@@ -57,11 +57,11 @@ const Channels =({channels, HandleChooseChannel, HandleRemoveChannel, reset, sho
 console.log(channels)
 
   return (
-    <div> 
-        <h2>Choose the channels</h2>{!showAll?<Button onClick={()=>reset()}>Cancel all</Button>:<></>}
+    <div style={{backgroundColor:'white'}}> 
+        <h2>Choose the channels</h2>{!showAll?<Button color='red' onClick={()=>reset()}>Clear filters</Button>:<></>}
       <Slider {...settings}>
         {channels.map(channel=>
-        <ChannelCard showAll ={showAll} HandleChooseChannel={HandleChooseChannel} HandleRemoveChannel={HandleRemoveChannel} key={channel.id} id={channel.id} name={channel.name} img={channel.logos[6]?channel.logos[6].url:channel.logos[1].url}/>
+        <ChannelCard filter ={showAll} HandleChooseChannel={HandleChooseChannel} HandleRemoveChannel={HandleRemoveChannel} key={channel.id} id={channel.id} name={channel.name} img={channel.logos[6]?channel.logos[6].url:channel.logos[1].url}/>
         )}
 
       </Slider>

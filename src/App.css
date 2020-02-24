@@ -1,0 +1,18 @@
+/*semantic UI menu has NavLink inside Menu.Item
+so, navlink is one that clickable.
+ Had to remove padding from MenuItem, and add padding to Navlink, so all area in the menu is clickable.
+*/
+.ui.menu{
+    background-color: rgb(238, 225, 245);
+}
+.ui.menu .item{
+    padding:0
+}
+a.link{
+   padding: 1em;
+   border-radius: 3px;
+   color: black
+}
+.link.selected{
+    background-color: rgb(189, 115, 223);
+}
