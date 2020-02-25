@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Channels from '../components/Channels'
 import DatePicker from 'react-date-picker'
 import ProgramsService from '../services/Programs'
-import  './cards.css'
 import Sticky from 'react-sticky-el'
 import moment from 'moment'//easier to work with with Date object
 import TablePrograms from '../components/TablePrograms'
