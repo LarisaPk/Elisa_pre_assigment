@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import LiveNow from './pages/LiveNow'
 import Schedule from './pages/Schedule'
 import { Container } from 'semantic-ui-react'
-import { BrowserRouter as Router, Route, NavLink} from 'react-router-dom'
+import { BrowserRouter as Router, Route, NavLink, Redirect} from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 import Clock from 'react-live-clock'
 import ProgramsService from './services/Programs'
@@ -61,7 +61,7 @@ console.log('channels', allChannels)
 
           <h2 style={{textAlign:'center', margin:'1em'}}>Time <Clock format={'HH:mm:ss'} ticking={true} timezone={'Europe/Helsinki'} /></h2>
 
-          <Route exact path="/" render={() => <LiveNow allChannels={allChannels}/>} />
+          <Route exact path="/" render={() => <Redirect to="/live" />} />
           <Route path="/live" render={() => <LiveNow  allChannels={allChannels}/>} />
           <Route path="/schedule" render={() => <Schedule allChannels={allChannels}/>} />
 

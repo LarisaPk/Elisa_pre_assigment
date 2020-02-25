@@ -3,7 +3,7 @@ so, navlink is one that clickable.
  Had to remove padding from MenuItem, and add padding to Navlink, so all area in the menu is clickable.
 */
 .ui.menu{
-    background-color: rgb(238, 225, 245);
+    background-color: rgb(34, 36, 148);
 }
 .ui.menu .item{
     padding:0
@@ -11,8 +11,10 @@ so, navlink is one that clickable.
 a.link{
    padding: 1em;
    border-radius: 3px;
-   color: black
+   color: white;
+   
 }
 .link.selected{
-    background-color: rgb(189, 115, 223);
+    background-color: rgb(96, 130, 194);
+    color:black
 }

@@ -23,12 +23,12 @@
   margin: 0.3em;
   border-radius: 5px;
   cursor: pointer;
-  background-color: rgb(185, 166, 194);
+  background-color: rgb(147, 180, 240);
   padding: 0.5em;
 }
 .channel_Card:hover {
   box-shadow: 10px 6px 16px 6px rgba(75, 3, 71, 0.178);
-  background-color: rgb(240, 220, 250);
+  background-color: rgb(220, 223, 250);
 }
 .channel_img{
  display: flex;

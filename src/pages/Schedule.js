@@ -2,9 +2,10 @@ import React, { useState, useEffect} from 'react'
 import Channels from '../components/Channels'
 import DatePicker from 'react-date-picker'
 import ProgramsService from '../services/Programs'
-import { Header, Image, Table, Button, Modal} from 'semantic-ui-react'
 import  './cards.css'
 import Sticky from 'react-sticky-el'
+import moment from 'moment'//easier to work with with Date object 
+import TablePrograms from '../components/TablePrograms'
 
 const Schedule = ({allChannels})=> {
 
@@ -12,12 +13,14 @@ const Schedule = ({allChannels})=> {
   const [channels, setChannells] = useState([])
   const [programs, setPrograms] = useState('')
   const [noChosenChannels, setNoChosenChannels] = useState(true)
+  const [programForDescripton, setProgramForDescripton] = useState()
 
  //fetch programs when channels or date change
  useEffect(() => {
   let didCancel= false
   const channelsFormatted =channels.toString()
-  const dateFormatted =date.toISOString().slice(0,10)
+  const dateFormatted =moment(date).format('YYYY-MM-DD')
+  console.log(dateFormatted,'date for request')
   const  fetchMyAPI = async ()  => {
     console.log('shedule effect')
     try {const response = await ProgramsService.getProgramsOnChannel(channelsFormatted, dateFormatted)
@@ -52,8 +55,10 @@ const Schedule = ({allChannels})=> {
 //date is picked from the calendar
   const onChange = date => {
     setDate( date )
+    console.log(date,'date');
   }
-
+  console.log(date,'date in state')
+  
 //when channel clicked 
   const handleAddChahhel =(id)=>{
     console.log("channel shedule clicked")
@@ -89,8 +94,14 @@ const Schedule = ({allChannels})=> {
     setPrograms('')
     setChannells([])
     setNoChosenChannels(true)
+  } 
+
+  const handleShowDescription =(channel, id)=>{
+   const p =  programs.find(program => program.id=== id) 
+   console.log(p, 'for description')
+   setProgramForDescripton(p)
   }
-  
+
   console.log(typeof(startDate),date, 'date' )
   console.log(programs, 'programs on choosen channel' )
 
@@ -106,48 +117,9 @@ const Schedule = ({allChannels})=> {
       />
       </div>
 
-      <Sticky><Channels channels={allChannels} HandleChooseChannel={handleAddChahhel} reset={reset} HandleRemoveChannel={HandleRemoveChannel} showAll={noChosenChannels}/></Sticky>
+       <Sticky><Channels channels={allChannels} HandleChooseChannel={handleAddChahhel} reset={reset} HandleRemoveChannel={HandleRemoveChannel} showAll={noChosenChannels}/></Sticky>
       
-      {programs?<Table basic='very' celled padded>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell width={2}>Channel</Table.HeaderCell>
-            <Table.HeaderCell width={2}>Program name</Table.HeaderCell>
-            <Table.HeaderCell width={2}>Date</Table.HeaderCell>
-            <Table.HeaderCell width={2}>Strart time - end time</Table.HeaderCell>
-            <Table.HeaderCell width={2}>Description</Table.HeaderCell>
-          </Table.Row>
-       </Table.Header>
-
-         <Table.Body>
-         {programs.map(program=>
-           <Table.Row key={program.id}>
-              <Table.Cell>
-
-                 <div style={{display:'flex', flexWrap:'wrap', flexDirection:'row', alignItems:'center'}}><img src={program.logo} style={{marginRight:'1em'}} alt='logo' /> <strong> {program.channel.name}</strong></div> 
-                  
-             </Table.Cell>
-             <Table.Cell>{program.name}</Table.Cell>
-             <Table.Cell>{program.startTime.slice(0,10)}</Table.Cell>
-             <Table.Cell>{program.startTime.slice(10)} - {program.endTime.slice(10)}</Table.Cell>
-             <Table.Cell>
-
-                <Modal trigger={<Button color='purple'>Show details</Button>}>
-                  <Modal.Header>Description</Modal.Header>
-                  <Modal.Content image>
-                    <Image wrapped size='medium'  src={program.thumbnails?program.thumbnails[2].url:'https://www.kindpng.com/picc/m/18-189751_movie-placeholder-hd-png-download.png://cinemaone.net/images/movie_placeholder.png'}/>
-                    <Modal.Description>
-                      <Header>{program.name}</Header>
-                      <p>{program.shortDescription}</p>
-                      <p><strong>{program.startTime.slice(10)} - {program.endTime.slice(10)} Duration {program.lengthMinutes} min</strong></p>
-                    </Modal.Description>
-                  </Modal.Content>
-                </Modal>               
-               
-             </Table.Cell>
-            </Table.Row>)}
-         </Table.Body>
-        </Table>:<></>}
+       {programs?<TablePrograms handleShowDescription ={handleShowDescription} livePrograms ={programs} programForDescripton={programForDescripton}/>:<></>}
 
     </div>    
   )
