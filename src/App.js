@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import LiveNow from './pages/LiveNow'
 import Schedule from './pages/Schedule'
 import { Container } from 'semantic-ui-react'
-import { BrowserRouter as Router, Route, NavLink, Redirect} from 'react-router-dom'
+import { BrowserRouter as Router, Route, NavLink, Redirect } from 'react-router-dom'
 import { Menu } from 'semantic-ui-react'
 import Clock from 'react-live-clock'
 import ProgramsService from './services/Programs'
@@ -11,9 +11,9 @@ import  './App.css'
 
 function App() {
 
-const [allChannels, setallChannels] = useState()
+  const [allChannels, setallChannels] = useState()
 
-//fetch channels only on first render 
+  //fetch channels only on first render
   useEffect(() => {
     let didCancel= false
     const  fetchMyAPI = async ()  => {
@@ -24,24 +24,24 @@ const [allChannels, setallChannels] = useState()
         }
       }
       catch (e){
-      console.log(e)
+        console.log(e)
       }
-    } 
+    }
     fetchMyAPI()
     return () => {
       didCancel = true
-    }        
+    }
   }, [])
 
-console.log('channels', allChannels)
+  console.log('channels', allChannels)
 
- if (!allChannels) {
-        return (
-          <div>
-            <h1>Loading...</h1>
-            <Loader active inline='centered' size='huge'/>
-          </div>  
-        )
+  if (!allChannels) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+        <Loader active inline='centered' size='huge'/>
+      </div>
+    )
   }
 
   return (
@@ -49,8 +49,8 @@ console.log('channels', allChannels)
 
       <Router>
         <div>
-          <Menu >            
-            <Menu.Item link>   
+          <Menu >
+            <Menu.Item link>
               <NavLink className='link' to="/live"  activeClassName="selected">Live Now </NavLink>
             </Menu.Item>
 
@@ -59,7 +59,7 @@ console.log('channels', allChannels)
             </Menu.Item>
           </Menu>
 
-          <h2 style={{textAlign:'center', margin:'1em'}}>Time <Clock format={'HH:mm:ss'} ticking={true} timezone={'Europe/Helsinki'} /></h2>
+          <h2 style={{ textAlign:'center', margin:'1em' }}>Time <Clock format={'HH:mm:ss'} ticking={true} timezone={'Europe/Helsinki'} /></h2>
 
           <Route exact path="/" render={() => <Redirect to="/live" />} />
           <Route path="/live" render={() => <LiveNow  allChannels={allChannels}/>} />
@@ -68,8 +68,8 @@ console.log('channels', allChannels)
         </div>
       </Router>
 
-    </Container> 
+    </Container>
   )
-} 
+}
 
 export default App

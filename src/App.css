@@ -1,5 +1,5 @@
 /*semantic UI menu has NavLink inside Menu.Item
-so, navlink is one that clickable.
+so, navlink is one that is clickable.
  Had to remove padding from MenuItem, and add padding to Navlink, so all area in the menu is clickable.
 */
 .ui.menu{

@@ -1,30 +1,30 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import  './ChannelCard.css'
 
-const ChannelCard =({name, img, HandleChooseChannel, HandleRemoveChannel, id, filter}) => {
+const ChannelCard =({ name, img, HandleChooseChannel, HandleRemoveChannel, id, filter }) => {
 
   const [clicked, setClicked] = useState(false)
 
-//if all channels shown card background is white again  
+  //if all channels shown card background is white again
   useEffect(() => {
-       if (filter){
-        setClicked(false)
-       }
+    if (filter){
+      setClicked(false)
+    }
   }, [filter])
 
   //when user choses channel
-  const handleClick =(id)=>{
+  const handleClick =(id) => {
     !clicked?HandleChooseChannel(id):HandleRemoveChannel(id)
     setClicked(!clicked)
   }
 
-return (
-  <div className ={!clicked?'channel_Card':'channel_CardClicked'} onClick={()=>handleClick(id)} >
-    <img className ='channel_img'src={img} alt= {name}/>
-    <div className ='channel_text'>
-      {name}
+  return (
+    <div className ={!clicked?'channel_Card':'channel_CardClicked'} onClick={() => handleClick(id)} >
+      <img className ='channel_img'src={img} alt= {name}/>
+      <div className ='channel_text'>
+        {name}
+      </div>
     </div>
-  </div>
 
   )
 }
