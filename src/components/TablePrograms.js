@@ -12,8 +12,9 @@ const TablePrograms =({ programs, programForDescripton, handleShowDescription })
     <Table basic='very' celled padded>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell width={3}>Channel</Table.HeaderCell>
-          <Table.HeaderCell width={3}>Program name</Table.HeaderCell>
+          <Table.HeaderCell width={2}>Channel</Table.HeaderCell>
+          <Table.HeaderCell width={2}>Program name</Table.HeaderCell>
+          <Table.HeaderCell width={2}>Date</Table.HeaderCell>
           <Table.HeaderCell width={2}>Strart time - end time</Table.HeaderCell>
           <Table.HeaderCell width={2}>Description</Table.HeaderCell>
         </Table.Row>
@@ -28,6 +29,7 @@ const TablePrograms =({ programs, programForDescripton, handleShowDescription })
 
             </Table.Cell>
             <Table.Cell>{program.name}</Table.Cell>
+            <Table.Cell>{program.startTime.slice(0,10)}</Table.Cell>
             <Table.Cell>{program.startTime.slice(10)} - {program.endTime.slice(10)}</Table.Cell>
             <Table.Cell>
 
@@ -50,6 +52,7 @@ const TablePrograms =({ programs, programForDescripton, handleShowDescription })
                       <Header>{programForDescripton.name}</Header>
                       <p>{programForDescripton.shortDescription}</p>
                       <p><strong>{programForDescripton.startTime.slice(10)} - {programForDescripton.endTime.slice(10)} Duration {programForDescripton.lengthMinutes} min</strong></p>
+                      {programForDescripton.ageRating?<p style={{ color:'blue' }}><strong>Age rating: {programForDescripton.ageRating}</strong></p>:<></>}
                     </Modal.Description>
                   </Modal.Content>
                   :<></>}

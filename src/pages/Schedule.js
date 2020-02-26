@@ -13,6 +13,7 @@ const Schedule = ({ allChannels }) => {
   const [programs, setPrograms] = useState('')
   const [noChosenChannels, setNoChosenChannels] = useState(true)
   const [programForDescripton, setProgramForDescripton] = useState()
+  const [header, setHeader] = useState('Shcedule')
 
   //fetch programs when channels or date change
   useEffect(() => {
@@ -36,6 +37,7 @@ const Schedule = ({ allChannels }) => {
             .sort((a, b) => {
               return a.startTimeUTC - b.startTimeUTC
             })
+          setHeader(programs.length===0?'No shedule available on this channel or date, try again':'Schedule')
           setPrograms(programs)
         }
       }
@@ -118,7 +120,15 @@ const Schedule = ({ allChannels }) => {
 
       <Sticky><Channels channels={allChannels} HandleChooseChannel={handleAddChahhel} reset={reset} HandleRemoveChannel={HandleRemoveChannel} showAll={noChosenChannels}/></Sticky>
 
-      {programs?<TablePrograms handleShowDescription ={handleShowDescription} programs ={programs} programForDescripton={programForDescripton}/>:<></>}
+      <div>
+
+        <h2 style={{ textAlign:'center', margin:'1em' }}>{header}</h2>
+
+        {programs.length>0?
+          <TablePrograms handleShowDescription ={handleShowDescription} programs ={programs} programForDescripton={programForDescripton}/>
+          :<></>}
+      </div>
+
 
     </div>
   )
